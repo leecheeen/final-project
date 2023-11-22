@@ -1,0 +1,20 @@
+file_path = '/content/tayloor.txt'
+with open(file_path, 'r', encoding='cp1252') as file:
+    lines = file.readlines()
+
+lyrics_by_album = {}
+
+for line in lines:
+    columns = line.split('\t')
+
+    if len(columns) >= 4:
+        album = columns[1].strip()
+        lyrics = columns[3].strip()
+
+        if album in lyrics_by_album:
+            lyrics_by_album[album] += '\n' + lyrics
+        else:
+            lyrics_by_album[album] = lyrics
+
+for album, lyrics in lyrics_by_album.items():
+    print(f'Album: {album}\nLyrics:\n{lyrics}\n{"="*50}\n')
