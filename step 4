@@ -1,0 +1,33 @@
+from collections import Counter
+
+file_path = '/content/results 1.txt'
+
+characters_to_remove = ".,?!\""
+
+translation_table = str.maketrans("", "", characters_to_remove)
+
+with open(file_path, 'r', encoding='utf-8') as file:
+    content = file.read()
+
+cleaned_content = content.translate(translation_table)
+
+groups = cleaned_content.split('Album: ')[1:]
+
+word_frequency_by_album = {}
+
+for group in groups:
+    album, lyrics = group.split('Lyrics:')
+    album = album.strip()
+    lyrics = lyrics.strip()
+
+    words = lyrics.split()
+
+    word_frequency = Counter(words)
+
+    word_frequency_by_album[album] = word_frequency
+
+for album, word_frequency in word_frequency_by_album.items():
+    print(f'Album: {album}')
+    for word, frequency in word_frequency.items():
+        print(f'{word}: {frequency}')
+    print("="*50)
