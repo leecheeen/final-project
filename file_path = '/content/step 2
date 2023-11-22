@@ -1,0 +1,13 @@
+file_path = '/content/tayloor.txt'
+
+characters_to_remove = ".,?!\""
+
+with open(file_path, 'r', encoding='cp1252') as file:
+    lines = file.readlines()
+
+translation_table = str.maketrans("", "", characters_to_remove)
+
+cleaned_lines = [line.translate(translation_table) for line in lines]
+
+for line in cleaned_lines:
+    print(line)
