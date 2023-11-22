@@ -1,0 +1,12 @@
+#with the word "Georgia" as an example: 
+
+word_to_plot = 'Georgia'
+
+plt.figure(figsize=(10, 6))
+for album, row in df.iterrows():
+    plt.bar(album, row[word_to_plot])
+
+plt.title(f'Word Frequency of "{word_to_plot}" in Each Album')
+plt.xlabel('Album')
+plt.ylabel('Frequency')
+plt.show()
