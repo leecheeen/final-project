@@ -1,0 +1,7 @@
+# Your text input
+input_text = """
+"""
+
+combined_text = input_text.replace('\n', ' ')
+
+print(combined_text)
